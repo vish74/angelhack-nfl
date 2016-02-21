@@ -16,12 +16,13 @@ function parseTeam(teamIndex) {
     return JSON.parse(readGame(teamIndex));
 }
 
-exports.first = function (req, res) {
+exports.first = function(req, res) {
     var game = parseGame(1);
 
     var play = game[2];
     var aa = JSON.stringify(play);
 
-    res.render('index', {'title': aa});
-
+    res.render('index', {
+        'title': aa
+    });
 };

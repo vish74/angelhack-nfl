@@ -1,22 +1,36 @@
 const fs = require('fs');
 
-function readGame(gameIndex) {
-  return fs.readFileSync(`${__dirname}/../data/full-game-${gameIndex}.json`);
-}
-
-function parseGame(gameIndex) {
-  return readGame(gameIndex).toString().trim().split('\n').map(JSON.parse);
-}
+const Game = require('./game');
 
 function readTeam(teamIndex) {
-  return fs.readFileSync(`${__dirname}/../data/team${gameIndex}.json`);
+  return fs.readFileSync(`${__dirname}/../data/team${teamIndex}.json`);
 }
 
 function parseTeam(teamIndex) {
-  return JSON.parse(readGame(teamIndex));
+  return JSON.parse(readTeam(teamIndex));
+}
+
+function parseTeams() {
+  const teams = {};
+  for (var i = 1; i <= 6; i++) {
+    teams[i.toString()] = parseTeam(i);
+  }
+  return teams;
+}
+
+function players() {
+  const players = {};
+  const teams = parseTeams();
+  Object.keys(teams).forEach(teamId => {
+    teams[teamId].teamPlayers.forEach(player => {
+      players[player.nflId] = player;
+    });
+  });
+  return players;
 }
 
 module.exports = {
-  readGame: readGame,
-  parseGame: parseGame
+  Game: Game,
+  parseTeams: parseTeams,
+  players: players
 };

@@ -1,12 +1,14 @@
 // Trainer script
 
-var trainer = require('../trainer');
+const trainer = require('../trainer');
 
-var game = trainer.parseGame(1);
+const players = trainer.players();
+const game = trainer.Game.fromIndex(1, players);
 
-var play = game[2];
+const play = game.getPlay(2);
 
-console.log(play)
+console.log(play.play.playStats);
+console.log(play.homeTrackingData[0])
 
 /*
 console.log(play.homeTrackingData[0].map(function(data) {
