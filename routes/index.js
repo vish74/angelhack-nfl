@@ -23,11 +23,12 @@ function parseTeam(teamIndex) {
 exports.first = function(req, res) {
     var game = parseGame(1);
     var play = game;
-    var aa = JSON.stringify(play);
+  //  var aa = JSON.stringify(play);
 
-    res.render('index', {
+    res.status(200).send(play);
+/*    res.render('index', {
         'title': aa
-    });
+    });*/
 };
 
 exports.second = function(req, res) {
@@ -57,10 +58,5 @@ exports.second = function(req, res) {
     });
 }
 });
-var aas = JSON.stringify(playerStats);
-    res.render('index', {
-        'title': aas
-    });
+res.status(200).send(playerStats);
 };
-
-
