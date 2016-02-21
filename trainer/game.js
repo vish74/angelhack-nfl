@@ -9,6 +9,14 @@ class Game {
     this.players = players;
   }
 
+  getPlays() {
+    const plays = [];
+    for (let i = 0; i <= this.plays.length; i++) {
+      plays.push(this.getPlay(i));
+    }
+    return plays;
+  }
+
   getPlay(index) {
     const play = Object.assign({}, this.plays[index]);
     const populatePlayer = data => {
@@ -17,8 +25,12 @@ class Game {
         trackingData: data.playerTrackingData
       };
     };
-    play.homeTrackingData = play.homeTrackingData.map(populatePlayer);
-    play.awayTrackingData = play.awayTrackingData.map(populatePlayer);
+    if (play.homeTrackingData) {
+      play.homeTrackingData = play.homeTrackingData.map(populatePlayer);
+    }
+    if (play.awayTrackingData) {
+      play.awayTrackingData = play.awayTrackingData.map(populatePlayer);
+    }
     return play;
   }
 
