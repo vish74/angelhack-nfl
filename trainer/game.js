@@ -11,7 +11,7 @@ class Game {
 
   getPlays() {
     const plays = [];
-    for (let i = 0; i <= this.plays.length; i++) {
+    for (let i = 0; i < this.plays.length; i++) {
       plays.push(this.getPlay(i));
     }
     return plays;
